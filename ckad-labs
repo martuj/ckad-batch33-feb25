@@ -350,6 +350,10 @@ install curl
 apt update && apt install curl -y
  
 curl 'http://localhost:80/app.txt'
+======================================================================
+Self test: complete the init container lab from the below official doc
+
+https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 
 ======================================================================================
 ==============================================================================
