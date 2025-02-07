@@ -614,6 +614,38 @@ kubectl describe svc readiness-svc
 
 End point is gone
 
+
+Task:3  Startup
+-------------------
+vi startup-probe.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: startup-test
+spec:
+  containers:
+  - name: my-app
+    image: busybox
+    command: ["sh", "-c", "sleep 40 && httpd -f -p 80"]
+    ports:
+    - containerPort: 80
+    startupProbe:
+      httpGet:
+        path: /
+        port: 80
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      failureThreshold: 6
+
+
+kubectl apply -f startup-probe.yaml
+kubectl get pods
+kubectl describe pod startup-test
+
+
+
+
 ===================================================================================
 
 
